@@ -1,5 +1,5 @@
 {
-  "name": "savosik/pimcore-ozon",
+  "name": "savosik/pimcore-ext",
   "description": "Adds to Pimcore console commands that update dictionaries",
   "minimum-stability": "stable",
   "license": "LGPL-3.0-or-later",
@@ -13,5 +13,17 @@
   },
   "require-dev": {
     "pimcore/pimcore": "10.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Savosik\\OzonBundle": "src/OzonBundle/"
+    }
+  },
+  "extra": {
+    "pimcore": {
+      "bundles": [
+        "Savosik\\OzonBundle\\OzonBundle"
+      ]
+    }
   }
 }
