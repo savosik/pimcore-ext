@@ -36,5 +36,7 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
 
         // Output as yellow text.
         $this->writeQuestion('question');
+
+        return 0;
     }
 }
