@@ -16,7 +16,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Savosik\\OzonBundle": "src/OzonBundle/"
+      "Savosik\\OzonBundle\\": "src/OzonBundle/"
     }
   },
   "extra": {
