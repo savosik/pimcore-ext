@@ -1,0 +1,17 @@
+{
+  "name": "savosik/pimcore-ozon",
+  "description": "Adds to Pimcore console commands that update dictionaries",
+  "minimum-stability": "stable",
+  "license": "LGPL-3.0-or-later",
+  "authors": [
+    {
+      "name": "triputvp",
+      "email": "slava.triput@gmail.com"
+    }
+  ],
+  "require": {
+  },
+  "require-dev": {
+    "pimcore/pimcore": "10.*"
+  }
+}
