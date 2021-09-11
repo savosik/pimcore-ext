@@ -1,6 +1,7 @@
 {
   "name": "savosik/pimcore-ext",
   "description": "Adds to Pimcore console commands that update dictionaries",
+  "type": "pimcore-bundle",
   "minimum-stability": "dev",
   "version": "1.0",
   "license": "GPL-3.0-or-later",
