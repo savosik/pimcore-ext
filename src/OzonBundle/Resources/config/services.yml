@@ -1,6 +1,4 @@
 services:
-
   Savosik\OzonBundle\Command\OzonCategoriesUpdateCommand:
-    autowire: true
-    autoconfigure: true
-    public: false
+    tags:
+      - { name: 'console.command', command: 'ozon:categories:update' }
