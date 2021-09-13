@@ -27,6 +27,7 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
 
         foreach ($entries as $entry){
             var_dump($entry);
+            echo 1;
         }
 
         return 0;
