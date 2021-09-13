@@ -23,7 +23,7 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
 
         $entries = new DataObject\Settings\Listing();
 
-        var_dump($entries);
+        echo "234";
 
         return 0;
     }
