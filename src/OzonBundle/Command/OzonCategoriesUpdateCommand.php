@@ -24,10 +24,9 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
 
         $items = new DataObject\AppSettings\Listing();
 
+        $items->load();
 
-        foreach ($items as $item) {
-            echo $item->getSettings_key();
-        }
+        var_dump($items);
 
         return 0;
     }
