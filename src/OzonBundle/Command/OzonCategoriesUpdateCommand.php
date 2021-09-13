@@ -26,7 +26,7 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
 
 
         foreach ($entries as $entry){
-            echo $entry->name.PHP_EOL;
+            echo  $entry->getName().PHP_EOL;
         }
 
         return 0;
