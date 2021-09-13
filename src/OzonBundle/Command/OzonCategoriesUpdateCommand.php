@@ -5,6 +5,9 @@ use Pimcore\Console\AbstractCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+use \Pimcore\Model\DataObject;
+
+
 class OzonCategoriesUpdateCommand extends AbstractCommand{
 
     protected function configure()
@@ -16,26 +19,13 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        // dump
-        $this->dump("Isn't that awesome?");
 
-        // add newlines through flags
-        $this->dump("Dump #2");
+        $entries = new DataObject\Settings\Listing();
 
-        // only dump in verbose mode
-        $this->dumpVerbose("Dump verbose");
+        foreach ($entries as $entry) {
+            echo  $entry->getName();
+        }
 
-        // Output as white text on red background.
-        $this->writeError('oh noes!');
-
-        // Output as green text.
-        $this->writeInfo('info');
-
-        // Output as blue text.
-        $this->writeComment('comment');
-
-        // Output as yellow text.
-        $this->writeQuestion('question');
 
         return 0;
     }
