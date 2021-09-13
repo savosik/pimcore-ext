@@ -26,7 +26,7 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
 
 
         foreach ($entries as $entry){
-            echo  $entry->getSettings_key().PHP_EOL;
+            var_dump($entry);
         }
 
         return 0;
