@@ -22,11 +22,12 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
     {
 
 
-        $myObject = DataObject\AppSettings::getById(1979);
+        $entries= new AppSettings\Listing();
 
-        $key = $myObject->getSettings_key();
 
-        var_dump($key);
+        foreach ($entries as $entry){
+            var_dump($entry);
+        }
 
         return 0;
     }
