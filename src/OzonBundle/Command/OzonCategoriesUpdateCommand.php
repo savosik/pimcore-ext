@@ -22,7 +22,7 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
     {
 
 
-        $entries = new DataObject\Settings\Listing();
+        $entries = new DataObject\AppSettings\Listing();
 
         foreach ($entries as $entry){
             echo "1".PHP_EOL;
