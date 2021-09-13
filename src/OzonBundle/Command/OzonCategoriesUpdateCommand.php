@@ -15,7 +15,7 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
     {
         $this
             ->setName("ozon:categories:update")
-            ->setDescription('For updating dictionary objects inside pimcore that collect ozon data');
+            ->setDescription('For updating dictionary objects inside pimcore that collect OZON data');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
