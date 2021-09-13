@@ -24,10 +24,9 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
 
         $entries= new AppSettings\Listing();
 
-        foreach ($entries as $entry){
-            echo "1".PHP_EOL;
-        }
+        $ids =  $entries->loadIdList();
 
+        var_dump($ids);
 
         return 0;
     }
