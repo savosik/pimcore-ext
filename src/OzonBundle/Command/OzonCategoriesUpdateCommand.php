@@ -25,7 +25,9 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
         $entries= new DataObject\AppSettings\Listing();
 
 
-        var_dump($entries);
+        foreach ($entries as $entry){
+            echo $entry->name.PHP_EOL;
+        }
 
         return 0;
     }
