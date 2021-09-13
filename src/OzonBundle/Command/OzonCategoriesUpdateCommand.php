@@ -6,7 +6,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 
-use Pimcore\Model\DataObject\AppSettings;
+use \Pimcore\Model\DataObject;
 
 
 class OzonCategoriesUpdateCommand extends AbstractCommand{
@@ -22,12 +22,9 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
     {
 
 
-        $entries= new AppSettings\Listing();
+        $entries = new DataObject\AppSettings\Listing();
 
-
-        foreach ($entries as $entry){
-            var_dump($entry);
-        }
+        var_dump($entries);
 
         return 0;
     }
