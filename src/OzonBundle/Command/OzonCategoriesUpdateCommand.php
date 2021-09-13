@@ -22,7 +22,7 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
     {
 
 
-        $entries= new AppSettings();
+        $entries= new AppSettings\Listing();
 
 
         var_dump($entries);
