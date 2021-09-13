@@ -22,9 +22,12 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
     {
 
 
-        $entries = new DataObject\AppSettings\Listing();
+        $items = new DataObject\AppSettings\Listing();
+        $items->setOrderKey("RAND()", false);
 
-        var_dump($entries);
+        foreach ($items as $item) {
+            echo $item . "<br />"; // output the path of the object
+        }
 
         return 0;
     }
