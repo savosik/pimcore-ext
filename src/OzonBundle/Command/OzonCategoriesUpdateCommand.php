@@ -21,6 +21,8 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 
+        echo "1234";
+
         $entries = new DataObject\Settings\Listing();
 
         echo "234";
