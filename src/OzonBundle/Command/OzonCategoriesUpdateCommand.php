@@ -5,6 +5,7 @@ use Pimcore\Console\AbstractCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+
 use \Pimcore\Model\DataObject;
 
 
@@ -21,10 +22,6 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
     {
 
         $entries = new DataObject\Settings\Listing();
-
-        foreach ($entries as $entry) {
-            echo  $entry->getName();
-        }
 
 
         return 0;
