@@ -20,6 +20,7 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $test = new SettingsHelper();
+        echo $test->getByKey('ozon_seller_id');
 
         // dump
         $this->dump("Isn't that awesome?");
