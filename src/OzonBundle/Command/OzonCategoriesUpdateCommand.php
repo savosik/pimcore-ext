@@ -1,13 +1,11 @@
 <?php
-namespace Savosik\OzonBundle\Command;
-
-use phpseclib3\Math\BigInteger\Engines\PHP;
 use Pimcore\Console\AbstractCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-
 use Pimcore\Model\DataObject;
+
+use Savosik\OzonBundle\Helpers;
 
 
 class OzonCategoriesUpdateCommand extends AbstractCommand{
@@ -23,12 +21,11 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $entries = new DataObject\Settings\Listing();
-        $entries->addConditionParam("setting_key = ?", "ozon_seller_id");
+        $setting = new Helpers\Settings();
 
-        foreach ($entries as $entry){
-            var_dump($entry->getSetting_value());
-        }
+        $ozon_seller_id = $setting->getValue('ozon_seller_id');
+
+        var_dump($ozon_seller_id);
 
         return 0;
     }
