@@ -27,7 +27,7 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
         $entries->addConditionParam("setting_key = ?", "ozon_seller_id");
 
         foreach ($entries as $entry){
-            var_dump($entry);
+            var_dump($entry->getSetting_value());
         }
 
         return 0;
