@@ -4,7 +4,7 @@ namespace Savosik\OzonBundle\Command;
 use Pimcore\Console\AbstractCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
+
 
 use Pimcore\Model\DataObject;
 
@@ -22,9 +22,7 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $container = new ContainerBuilder();
 
-        echo $container->getParameter('secret');
 
         return 0;
     }
