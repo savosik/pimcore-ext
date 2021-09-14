@@ -21,8 +21,6 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 
-        echo $this->parameterBag->get('secret');
-
         $container->get('secret');
 
         return 0;
