@@ -4,5 +4,5 @@ services:
     tags:
       - { name: 'console.command', command: 'ozon:categories:update' }
 
-  Savosik\OzonBundle\Service:
+  Savosik\OzonBundle\Service\:
     resource: '../../Service'
