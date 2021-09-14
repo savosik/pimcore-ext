@@ -26,7 +26,7 @@ class OzonDataProvider{
 
 
     private function execute(){
-        $client  = new GuzzleHttp\Client();
+        $client  = new Client();
         $response = $client->request(
             $this->method,
             $this->url,
