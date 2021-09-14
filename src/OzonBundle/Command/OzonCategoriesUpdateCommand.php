@@ -6,6 +6,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use Savosik\OzonBundle\Helpers\SettingsHelper;
+use Savosik\OzonBundle\Ozon\OzonDataProvider;
 
 
 class OzonCategoriesUpdateCommand extends AbstractCommand{
@@ -20,6 +21,12 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $test = new SettingsHelper();
+
+        $ozon = new OzonDataProvider();
+        $ozon->setClientId('1');
+        $ozon->setToken('1');
+        $ozon->get_categories(2);
+
         echo $test->getByKey('ozon_seller_id');
 
         // dump
