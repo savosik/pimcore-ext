@@ -24,7 +24,7 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
     {
         $container = new ContainerBuilder();
 
-        echo $container->get('secret');
+        echo $container->getParameter('secret');
 
         return 0;
     }
