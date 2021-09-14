@@ -22,7 +22,9 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-
+        $entries = new DataObject\Settings\Listing();
+        $entries->addConditionParam("settings_key = ?", "ozon_seller_id");
+        var_dump($entries[0]);
 
         return 0;
     }
