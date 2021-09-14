@@ -3,6 +3,3 @@ services:
     public: true
     tags:
       - { name: 'console.command', command: 'ozon:categories:update' }
-
-  Savosik\OzonBundle\Service\:
-    resource: '../../Service/*'
