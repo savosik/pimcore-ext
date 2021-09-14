@@ -13,11 +13,11 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
 
     private $container;
 
-    public function __construct(ContainerBuilder $container)
-    {
-        parent::__construct();
-        $this->container = $container;
-    }
+   public function __construct(ContainerBuilder $container, string $name = null)
+   {
+       parent::__construct($name);
+       $this->container = $container;
+   }
 
 
     protected function configure()
