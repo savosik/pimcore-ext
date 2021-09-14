@@ -5,11 +5,19 @@ use Pimcore\Console\AbstractCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 use Pimcore\Model\DataObject;
 
 
 class OzonCategoriesUpdateCommand extends AbstractCommand{
+
+    private $parameterBag;
+
+    public function __construct(ParameterBagInterface $parameterBag)
+    {
+        $this->parameterBag = $parameterBag;
+    }
 
     protected function configure()
     {
@@ -21,14 +29,7 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 
-
-        $entries= new DataObject\AppSettings\Listing();
-
-
-        foreach ($entries as $entry){
-            var_dump($entry);
-            echo 1;
-        }
+        echo $this->parameterBag->get('secret');
 
         return 0;
     }
