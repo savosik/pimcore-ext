@@ -5,8 +5,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use Pimcore\Model\DataObject;
 
-use Savosik\OzonBundle\Helpers;
-
+use Savosik\OzonBundle\Service\Helpers;
 
 class OzonCategoriesUpdateCommand extends AbstractCommand{
 

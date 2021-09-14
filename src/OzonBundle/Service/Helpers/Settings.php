@@ -1,5 +1,5 @@
 <?php
-namespace Savosik\OzonBundle\Helpers;
+namespace Savosik\OzonBundle\Service\Helpers;
 
 use Pimcore\Model\DataObject;
 
