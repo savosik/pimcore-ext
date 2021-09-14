@@ -5,6 +5,9 @@ use Pimcore\Console\AbstractCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+use Savosik\OzonBundle\Helpers\SettingsHelper;
+
+
 class OzonCategoriesUpdateCommand extends AbstractCommand{
 
     protected function configure()
@@ -16,6 +19,8 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $test = new SettingsHelper();
+
         // dump
         $this->dump("Isn't that awesome?");
 
