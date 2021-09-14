@@ -21,6 +21,7 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 
+        echo 1;
 
         return 0;
     }
