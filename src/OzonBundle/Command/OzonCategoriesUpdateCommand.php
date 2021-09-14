@@ -26,6 +26,8 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
         $entries = new DataObject\Settings\Listing();
         $entries->addConditionParam("setting = ?", "ozon_seller_id");
 
+        echo 1;
+
         foreach ($entries as $entry){
             var_dump($entry);
             echo "1".PHP_EOL;
