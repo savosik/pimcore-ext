@@ -11,14 +11,6 @@ use Pimcore\Model\DataObject;
 
 class OzonCategoriesUpdateCommand extends AbstractCommand{
 
-    private $container;
-
-   public function __construct(ContainerBuilder $container, string $name = null)
-   {
-       parent::__construct($name);
-       $this->container = $container;
-   }
-
 
     protected function configure()
     {
@@ -30,8 +22,9 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $container = new ContainerBuilder();
 
-        echo ($this->container->get('secret'));
+        echo $container->get('secret');
 
         return 0;
     }
