@@ -1,6 +1,7 @@
 <?php
 namespace Savosik\OzonBundle\Command;
 
+use phpseclib3\Math\BigInteger\Engines\PHP;
 use Pimcore\Console\AbstractCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -24,7 +25,11 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
     {
         $entries = new DataObject\Settings\Listing();
         $entries->addConditionParam("settings_key = ?", "ozon_seller_id");
-        var_dump($entries[0]);
+
+        foreach ($entries as $entry){
+            var_dump($entry);
+            echo "1".PHP_EOL;
+        }
 
         return 0;
     }
