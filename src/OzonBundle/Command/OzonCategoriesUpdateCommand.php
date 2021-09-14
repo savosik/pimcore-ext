@@ -5,6 +5,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use Pimcore\Model\DataObject;
 
+use Savosik\OzonBundle\Service\Settings;
 
 class OzonCategoriesUpdateCommand extends AbstractCommand{
 
@@ -20,6 +21,8 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 
+        $settings = new Settings();
+        echo $settings->getValue('ozon_seller_id');
 
         return 0;
     }
