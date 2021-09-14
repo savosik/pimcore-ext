@@ -2,4 +2,4 @@ services:
   Savosik\OzonBundle\Command\OzonCategoriesUpdateCommand:
     public: true
     tags:
-      - { name: 'console.command', command: 'ozon:categories:update' }
+      - { name: 'console.command', codockermand: 'ozon:categories:update' }

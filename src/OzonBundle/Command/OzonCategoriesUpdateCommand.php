@@ -5,7 +5,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use Pimcore\Model\DataObject;
 
-use Savosik\OzonBundle\Service\Slava;
+
 
 class OzonCategoriesUpdateCommand extends AbstractCommand{
 
@@ -21,7 +21,6 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 
-        $settings = new Slava();
 
         return 0;
     }
