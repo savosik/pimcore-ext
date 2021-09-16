@@ -9,6 +9,9 @@ class OzonCategoriesTreeProcessor
 {
 
 
+    /**
+     * @throws \Exception
+     */
     public function insertUpdate($ozon_categories_tree, $start_path = '')
     {
 
@@ -17,6 +20,10 @@ class OzonCategoriesTreeProcessor
 
         foreach ($categories_list as $category){
             DataObject\Service::createFolderByPath($category['category_path']);
+
+            $object_folder = DataObject\Folder::getByPath($category['category_path']);
+            $object_folder->setProperty('category_id', 'Text', $category['category_id']);
+            $object_folder->save();
         }
     }
 
