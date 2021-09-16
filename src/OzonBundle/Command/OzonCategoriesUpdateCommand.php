@@ -23,7 +23,7 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
     {
         $settings = new SettingsHelper();
         $ozon_client_id = $settings->getByKey('ozon_client_id');
-        $ozon_token = $settings->getByKey('ozon_token');
+        $ozon_token = $settings->getByKey('ozon_api_key');
         $ozon_parent_categories = $settings->getByKey('ozon_parent_categories');
         $ozon_parent_categories  = explode($ozon_parent_categories,PHP_EOL);
 
