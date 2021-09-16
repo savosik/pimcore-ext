@@ -7,7 +7,11 @@ class OzonCategoriesTreeProcessor{
 
     public function insertUpdate($ozon_categories_tree){
 
-        DataObject\Folder::create(['test1','test2','test3']);
+        $folders = DataObject\Folder::getList();
+
+        foreach ($folders as $folder){
+            var_dump($folder);
+        }
     }
 
 
