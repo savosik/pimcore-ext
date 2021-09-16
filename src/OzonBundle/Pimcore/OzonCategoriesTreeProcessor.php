@@ -14,7 +14,7 @@ class OzonCategoriesTreeProcessor
      */
     public function insertUpdate($ozon_categories_tree, $start_path = '')
     {
-        $this->lockAllCategories();
+        $this->lockAllCategories($start_path);
 
         $categories_list = [];
         $this->buildList($ozon_categories_tree, $start_path, $categories_list);
@@ -29,12 +29,18 @@ class OzonCategoriesTreeProcessor
     }
 
 
-    public function lockAllCategories()
+    public function lockAllCategories($start_path = null)
     {
+
         $folders = DataObject\Folder::getList();
 
         foreach ($folders as $folder){
-            $folder->setLocked(true);
+            $folder_path = $folder->getFullPath();
+
+            if(str_contains($folder_path, $start_path)){
+                $folder->setLocked(true);
+                $folder->save();
+            }
         }
     }
 
