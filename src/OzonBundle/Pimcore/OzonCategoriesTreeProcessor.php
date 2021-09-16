@@ -31,7 +31,6 @@ class OzonCategoriesTreeProcessor
 
     public function lockAllCategories($start_path = null)
     {
-
         $folders = DataObject\Folder::getList();
 
         foreach ($folders as $folder){
