@@ -18,37 +18,26 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
             ->setDescription('For updating dictionary objects inside pimcore that collect ozon data');
     }
 
+
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $test = new SettingsHelper();
+        $settings = new SettingsHelper();
+        $ozon_client_id = $settings->getByKey('ozon_client_id');
+        $ozon_token = $settings->getByKey('ozon_token');
+        $ozon_parent_categories = $settings->getByKey('ozon_parent_categories');
+        $ozon_parent_categories  = explode($ozon_parent_categories,PHP_EOL);
+
+        $ozon_parent_category = $ozon_parent_categories[0];
+
 
         $ozon = new OzonDataProvider();
-        $ozon->setClientId('1');
-        $ozon->setToken('1');
-        $ozon->get_categories(2);
+        $ozon->setClientId($ozon_client_id);
+        $ozon->setToken($ozon_token);
 
-        echo $test->getByKey('ozon_seller_id');
+        $categories = $ozon->get_categories($ozon_parent_category);
 
-        // dump
-        $this->dump("Isn't that awesome?");
+        var_dump($categories);
 
-        // add newlines through flags
-        $this->dump("Dump #2");
-
-        // only dump in verbose mode
-        $this->dumpVerbose("Dump verbose");
-
-        // Output as white text on red background.
-        $this->writeError('oh noes!');
-
-        // Output as green text.
-        $this->writeInfo('info');
-
-        // Output as blue text.
-        $this->writeComment('comment');
-
-        // Output as yellow text.
-        $this->writeQuestion('question');
 
         return 0;
     }
