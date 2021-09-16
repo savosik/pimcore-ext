@@ -28,7 +28,7 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
 
         var_dump($ozon_parent_categories);
 
-        $ozon_parent_categories  = explode($ozon_parent_categories,"\r\n");
+        $ozon_parent_categories  = explode($ozon_parent_categories,",");
 
         $ozon_parent_category = $ozon_parent_categories[0];
 
