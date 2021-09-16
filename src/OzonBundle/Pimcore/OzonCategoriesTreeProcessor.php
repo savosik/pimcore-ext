@@ -14,7 +14,7 @@ class OzonCategoriesTreeProcessor
      */
     public function insertUpdate($ozon_categories_tree, $start_path = '')
     {
-        $this->makeAllCategoriesUnpublished();
+        $this->lockAllCategories();
 
         $categories_list = [];
         $this->buildList($ozon_categories_tree, $start_path, $categories_list);
@@ -22,17 +22,20 @@ class OzonCategoriesTreeProcessor
         foreach ($categories_list as $category){
             $folder = DataObject\Service::createFolderByPath($category['category_path']);
 
-            //$folder->setPublished(true);
+           // $folder->setLocked(false);
             $folder->setProperty('category_id', 'Text', $category['category_id']);
             $folder->save();
         }
     }
 
 
-    public function makeAllCategoriesUnpublished()
+    public function lockAllCategories()
     {
-        $FolderList = DataObject\Folder::getList();
-        var_dump($FolderList);
+        $folders = DataObject\Folder::getList();
+
+        foreach ($folders as $folder){
+            $folder->setLocked(true);
+        }
     }
 
 
