@@ -5,13 +5,11 @@ use Pimcore\Model\DataObject;
 
 class OzonCategoriesTreeProcessor{
 
+
     public function insertUpdate($ozon_categories_tree){
 
-        $folders = DataObject\Folder::getList();
+        DataObject\Service::createFolderByPath('/asd/arwe/wery');
 
-        foreach ($folders as $folder){
-            var_dump($folder);
-        }
     }
 
 
