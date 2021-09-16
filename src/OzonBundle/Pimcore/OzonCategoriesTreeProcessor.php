@@ -43,7 +43,7 @@ class OzonCategoriesTreeProcessor
                 $this->buildList($category['children'], $new_line, $res);
             } else {
                 $arr = [
-                    'category_path' => rtrim($path, '/'),
+                    'category_path' => $path.$category['title'],
                     'category_id' => $category['category_id'],
                     'title' => $category['title']
                 ];
