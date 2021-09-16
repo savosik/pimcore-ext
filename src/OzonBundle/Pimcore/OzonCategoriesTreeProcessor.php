@@ -22,7 +22,7 @@ class OzonCategoriesTreeProcessor
         foreach ($categories_list as $category){
             $folder = DataObject\Service::createFolderByPath($category['category_path']);
 
-           // $folder->setLocked(false);
+            $folder->setLocked(false);
             $folder->setProperty('category_id', 'Text', $category['category_id']);
             $folder->save();
         }
@@ -38,11 +38,6 @@ class OzonCategoriesTreeProcessor
         }
     }
 
-
-    public function createFolder()
-    {
-
-    }
 
 
     private function buildList($categories, $path = '', &$res = array())
