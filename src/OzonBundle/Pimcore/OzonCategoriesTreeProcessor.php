@@ -22,7 +22,7 @@ class OzonCategoriesTreeProcessor
         foreach ($categories_list as $category){
             $folder = DataObject\Service::createFolderByPath($category['category_path']);
 
-            $folder->setPublished(true);
+            //$folder->setPublished(true);
             $folder->setProperty('category_id', 'Text', $category['category_id']);
             $folder->save();
         }
