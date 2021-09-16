@@ -7,6 +7,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use Savosik\OzonBundle\Helpers\SettingsHelper;
 use Savosik\OzonBundle\Ozon\OzonDataProvider;
+use Savosik\OzonBundle\Pimcore\OzonCategoriesTreeProcessor;
 
 
 class OzonCategoriesUpdateCommand extends AbstractCommand{
@@ -22,25 +23,24 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $settings = new SettingsHelper();
+
         $ozon_client_id = $settings->getByKey('ozon_client_id');
         $ozon_token = $settings->getByKey('ozon_api_key');
         $ozon_parent_categories = $settings->getByKey('ozon_parent_categories');
 
-        var_dump($ozon_parent_categories);
-
         $ozon_parent_categories  = explode(PHP_EOL, $ozon_parent_categories);
 
-        $ozon_parent_category = $ozon_parent_categories[0];
+        $ozon_data_provider = new OzonDataProvider();
+        $ozon_data_provider->setClientId($ozon_client_id);
+        $ozon_data_provider->setToken($ozon_token);
 
-        var_dump($ozon_parent_category);
+        $ozon_categories_processor = new OzonCategoriesTreeProcessor();
 
-        $ozon = new OzonDataProvider();
-        $ozon->setClientId($ozon_client_id);
-        $ozon->setToken($ozon_token);
+        foreach ($ozon_parent_categories as $ozon_parent_category){
 
-        $categories = $ozon->get_categories($ozon_parent_category);
-
-        var_dump($categories);
+            $categories = $ozon_data_provider->get_categories($ozon_parent_category);
+            $ozon_categories_processor->insertUpdate($categories);
+        }
 
 
         return 0;
