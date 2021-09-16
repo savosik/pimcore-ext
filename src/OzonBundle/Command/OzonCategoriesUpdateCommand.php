@@ -29,6 +29,7 @@ class OzonCategoriesUpdateCommand extends AbstractCommand{
 
         $ozon_parent_category = $ozon_parent_categories[0];
 
+        var_dump($ozon_parent_category);
 
         $ozon = new OzonDataProvider();
         $ozon->setClientId($ozon_client_id);
