@@ -4,14 +4,14 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 
 class OzonDataProvider{
-    private $client_id;
+    private $api_key;
     private $token;
     private $method;
     private $url;
     private $request_arr;
 
-    public function setClientId($client_id){
-        $this->client_id = $client_id;
+    public function setApiKey($api_key){
+        $this->api_key = $api_key;
     }
 
     public function setToken($token){
@@ -46,7 +46,7 @@ class OzonDataProvider{
             $this->url,
             [
                 'headers' => [
-                    'Client-Id' => $this->client_id,
+                    'Client-Id' => $this->api_key,
                     'Api-Key'   => $this->token
                 ],
                 'json' => $this->request_arr ?: null
