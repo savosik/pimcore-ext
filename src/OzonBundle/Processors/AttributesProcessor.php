@@ -24,7 +24,7 @@ class AttributesProcessor{
             $new_obj->setGroup_name($ozon_attribute['group_name']);
             $new_obj->setDictionary_id($ozon_attribute['dictionary_id']);
 
-            $new_obj->setPath($path);
+            $new_obj->setPath($path.$ozon_attribute['name']);
 
             $new_obj->save();
         }
