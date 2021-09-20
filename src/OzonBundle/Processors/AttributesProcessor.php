@@ -11,6 +11,9 @@ class AttributesProcessor{
         $ozon_attributes = $ozon_attributes[0]['attributes'];
 
         foreach ($ozon_attributes as $ozon_attribute){
+
+            var_dump($ozon_attribute);
+
             $new_obj = new DataObject\OzonAttribute();
 
             $new_obj->setKey($ozon_attribute['name']);
