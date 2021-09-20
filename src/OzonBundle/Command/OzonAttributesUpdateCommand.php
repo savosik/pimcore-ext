@@ -27,15 +27,15 @@ class OzonAttributesUpdateCommand extends AbstractCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $settings_helper = new SettingsHelper();
+        $settings['ozon_client_id'] = $settings_helper->getByKey('ozon_client_id');
         $settings['ozon_api_key'] = $settings_helper->getByKey('ozon_api_key');
-        $settings['ozon_token'] = $settings_helper->getByKey('ozon_token');
         $settings['ozon_categories_pimcore_start_path'] = $settings_helper->getByKey('ozon_categories_pimcore_start_path');
         $settings['ozon_parent_categories'] = explode(PHP_EOL, $settings_helper->getByKey('ozon_parent_categories'));
 
 
         $ozon_data_provider = new OzonDataProvider();
+        $ozon_data_provider->setClientId($settings['ozon_client_id']);
         $ozon_data_provider->setApiKey($settings['ozon_api_key']);
-        $ozon_data_provider->setToken($settings['ozon_token']);
 
 
         $attributes_processor = new AttributesProcessor();
