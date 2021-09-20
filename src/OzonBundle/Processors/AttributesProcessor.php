@@ -7,6 +7,9 @@ use Pimcore\Model\DataObject;
 class AttributesProcessor{
 
     public function insertUpdate($ozon_attributes, $path = ''){
+
+        var_dump($ozon_attributes);
+
         $ozon_attributes = $ozon_attributes['attributes'];
 
         foreach ($ozon_attributes as $ozon_attribute){
