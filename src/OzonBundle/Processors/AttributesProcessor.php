@@ -1,12 +1,15 @@
 <?php
+
 namespace Savosik\OzonBundle\Processors;
 
 use Pimcore\Model\DataObject\Classificationstore;
 
 
-class AttributesProcessor{
+class AttributesProcessor
+{
 
-    public function createClassificationStore($store_name){
+    public function createClassificationStore($store_name)
+    {
         $config = Classificationstore\StoreConfig::getByName($store_name);
         if (!$config) {
             $config = new Classificationstore\StoreConfig();
@@ -18,8 +21,8 @@ class AttributesProcessor{
     }
 
 
-    public function createCollection($store_id, $collection_name, $collection_description = ''){
-
+    public function createCollection($store_id, $collection_name, $collection_description = '')
+    {
         $config = Classificationstore\CollectionConfig::getByName($collection_name, $store_id);
         if (!$config) {
             $config = new Classificationstore\CollectionConfig();
@@ -33,23 +36,59 @@ class AttributesProcessor{
     }
 
 
+    public function createGroup($store_id, $group_name, $group_description = '')
+    {
+        $config = Classificationstore\GroupConfig::getByName($group_name, $store_id);
+        if (!$config) {
+            $config = new Classificationstore\GroupConfig();
+            $config->setStoreId($store_id);
+            $config->setName($group_name);
+            $config->setDescription($group_description);
+            $config->save();
+        }
 
-    public function insertUpdate($ozon_attributes, $pimcore_category){
-
-        $ozon_category_path = $pimcore_category['full_path'];
-        $ozon_category_id = $pimcore_category['ozon_category_id'];
-
-        $category_items = explode("/", $ozon_category_path);
-
-        $store_name = $category_items[0]; //fist element of categories three is Ozon store name (ex. Ozon/)
-        $group_name = end($category_items); // last element of categories three iz Ozon group name
-
-        //try to create classification store if not exist
-
-
-
-
+        return $config->getId();
     }
+
+
+    public function AddGroupToCollection($collection_id, $group_id)
+    {
+        $config = new Classificationstore\CollectionGroupRelation();
+        $config->setColId($collection_id);
+        $config->setGroupId($group_id);
+        $config->save();
+    }
+
+
+    public function createProperty($store_id, $prop_name, $prop_description = ''){
+
+        $definition = [
+            'fieldtype' => 'input',
+            'name' => $prop_name,
+            'title' => $prop_name,
+            'datatype' => 'data',
+        ];
+
+        $config = new Classificationstore\KeyConfig();
+        $isset_config = $config::getByName($prop_name, $store_id);
+
+        if(!$isset_config){
+            $config->setName($prop_name);
+            $config->setTitle($prop_name);
+            $config->setType('input');
+            $config->setDescription($prop_description);
+            $config->setStoreId($store_id);
+            $config->setEnabled(1);
+            $config->setDefinition(json_encode($definition));
+            $config->save();
+        }
+
+        return $config->getId();
+    }
+
+
+
+
 
 
 }
