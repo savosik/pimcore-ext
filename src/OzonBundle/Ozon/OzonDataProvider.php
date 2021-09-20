@@ -27,12 +27,12 @@ class OzonDataProvider{
     }
 
 
-    public function getAttributesByCategory($category_id){
+    public function getAttributesByCategoriesIds($categories_ids_array){
         $this->url = "https://api-seller.ozon.ru/v3/category/attribute";
         $this->method = "POST";
         $this->request_arr = [
             "attribute_type" => "ALL",
-            "category_id" => [$category_id],
+            "category_id" => $categories_ids_array,
             "language" => "DEFAULT"
         ];
 

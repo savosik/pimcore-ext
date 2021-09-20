@@ -47,7 +47,7 @@ class OzonAttributesUpdateCommand extends AbstractCommand
         foreach ($pimcore_categories as $pimcore_category){
 
             //get ozon attributes by category id
-            $ozon_attributes  = $ozon_data_provider->getAttributesByCategory($pimcore_category['ozon_category_id']);
+            $ozon_attributes  = $ozon_data_provider->getAttributesByCategoriesIds(array($pimcore_category['ozon_category_id']));
 
             $attributes_processor->unPublishInPath($pimcore_category['full_path']);
             $attributes_processor->insertUpdate($ozon_attributes, $pimcore_category['full_path']);
