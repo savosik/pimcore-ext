@@ -35,7 +35,7 @@ class OzonAttributesUpdateCommand extends AbstractCommand
         $settings['ozon_classification_store'] = $settings_helper->getByKey('ozon_classification_store');
 
 
-        //load Ozon data proxy
+        //load Ozon data provider
         $ozon_data_provider = new OzonDataProvider();
         $ozon_data_provider->setClientId($settings['ozon_client_id']);
         $ozon_data_provider->setApiKey($settings['ozon_api_key']);
@@ -46,7 +46,7 @@ class OzonAttributesUpdateCommand extends AbstractCommand
         $store_id = $attributes_processor->createClassificationStore($settings['ozon_classification_store']);
 
 
-        //fetch ozon categories from specific three
+        //fetch created in pimcore categories from specific three
         $categories_processor = new CategoriesProcessor();
         $pimcore_categories = $categories_processor->getCategories($settings['ozon_categories_pimcore_start_path']);
 
@@ -62,7 +62,37 @@ class OzonAttributesUpdateCommand extends AbstractCommand
             $full_path = $pimcore_category['full_path'];
             $full_path_arr = explode("/", $full_path);
             $collection_name = end($full_path_arr);
-            $attributes_processor->createCollection($store_id, $collection_name, $full_path);
+            $collection_id = $attributes_processor->createCollection($store_id, $collection_name, $full_path);
+
+            // fetch loaded from request ozon attributes
+            foreach ($ozon_attributes as $ozon_attribute){
+                $ozon_group_id = $ozon_attribute['group_id'];
+                $ozon_group_name = $ozon_attribute['group_name'];
+                $ozon_group_description = $ozon_group_id;
+
+                if($ozon_group_id == 0){
+                    $ozon_group_name = $collection_name;
+                }
+
+                // create classification store group
+                $created_group_id = $attributes_processor->createGroup($store_id, $ozon_group_name, $ozon_group_description);
+
+                // add group to collection
+                $attributes_processor->addGroupToCollection($collection_id, $created_group_id);
+
+                // dictionary_id: 0
+                    // is_collection: false
+                        // Boolean || Decimal || ImageURL || Integer || multiline || String || URL
+                    // is_collection: true
+                        // URL
+                // dictionary_id: != 0
+                    // is_collection: false
+                        // String
+                            // Many Values || Few Values
+                    // is_collection: true
+                        // String
+                            // Many Values || Few Values
+            }
 
         }
 

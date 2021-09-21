@@ -51,7 +51,7 @@ class AttributesProcessor
     }
 
 
-    public function AddGroupToCollection($collection_id, $group_id)
+    public function addGroupToCollection($collection_id, $group_id)
     {
         $config = new Classificationstore\CollectionGroupRelation();
         $config->setColId($collection_id);
