@@ -40,6 +40,11 @@ class OzonDataProvider{
     }
 
 
+    public function getDictionary($dictionary_id){
+        return ["has_next" => false, "elements" => []];
+    }
+
+
     private function execute(){
         $client  = new Client();
         $response = $client->request(

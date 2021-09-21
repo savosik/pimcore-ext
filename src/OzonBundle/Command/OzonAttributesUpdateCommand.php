@@ -80,18 +80,17 @@ class OzonAttributesUpdateCommand extends AbstractCommand
                 // add group to collection
                 $attributes_processor->addGroupToCollection($collection_id, $created_group_id);
 
-                // dictionary_id: 0
-                    // is_collection: false
-                        // Boolean || Decimal || ImageURL || Integer || multiline || String || URL
-                    // is_collection: true
-                        // URL
-                // dictionary_id: != 0
-                    // is_collection: false
-                        // String
-                            // Many Values || Few Values
-                    // is_collection: true
-                        // String
-                            // Many Values || Few Values
+
+                $dictionary_id = $ozon_attribute['dictionary_id'];
+                if($dictionary_id !== 0){
+                    $dictionary = $ozon_data_provider->getDictionary($dictionary_id);
+                }
+
+                $prop_id = $attributes_processor->createPropertyByOzonAttribute($ozon_attribute, $store_id);
+                $attributes_processor->addPropertyToGroup($created_group_id, $prop_id);
+
+
+
             }
 
         }

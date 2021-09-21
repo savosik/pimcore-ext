@@ -60,7 +60,8 @@ class AttributesProcessor
     }
 
 
-    public function createProperty($store_id, $prop_name, $prop_description = ''){
+    public function createProperty($store_id, $prop_name, $prop_description = '')
+    {
 
         $definition = [
             'fieldtype' => 'input',
@@ -72,7 +73,7 @@ class AttributesProcessor
         $config = new Classificationstore\KeyConfig();
         $isset_config = $config::getByName($prop_name, $store_id);
 
-        if(!$isset_config){
+        if (!$isset_config) {
             $config->setName($prop_name);
             $config->setTitle($prop_name);
             $config->setType('input');
@@ -87,8 +88,16 @@ class AttributesProcessor
     }
 
 
+    public function createPropertyByOzonAttribute($ozon_attribute, $store_id)
+    {
+
+        return 0;
+    }
 
 
+    public function addPropertyToGroup($group_id, $property_id)
+    {
 
+    }
 
 }
