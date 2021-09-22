@@ -50,7 +50,7 @@ class OzonDataProvider{
             "category_id" => $category_id,
             "language" => "DEFAULT",
             "last_value_id" => 0,
-            "limit" => 30
+            "limit" => 50
         ];
 
         $res = $this->execute();
