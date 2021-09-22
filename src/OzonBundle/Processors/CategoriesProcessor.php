@@ -32,7 +32,7 @@ class CategoriesProcessor
     /**
      * @throws \Exception
      */
-    public function insertUpdate($ozon_categories_tree, $start_path = '')
+    public function insertUpdateFromOzonThree($ozon_categories_tree, $start_path = '')
     {
         $categories_list = [];
         $this->buildList($ozon_categories_tree, $start_path, $categories_list);
@@ -45,6 +45,7 @@ class CategoriesProcessor
             $folder->save();
         }
     }
+
 
     private function buildList($categories, $path = '', &$res = array())
     {

@@ -3,7 +3,8 @@
 namespace Savosik\OzonBundle\Command;
 
 use Pimcore\Console\AbstractCommand;
-use Pimcore\DataObject\GridColumnConfig\Operator\PHP;
+use Pimcore\Model\DataObject;
+
 use Savosik\OzonBundle\Processors\AttributesProcessor;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -35,7 +36,7 @@ class OzonAttributesUpdateCommand extends AbstractCommand
         $settings['ozon_categories_pimcore_start_path'] = $settings_helper->getByKey('ozon_categories_pimcore_start_path');
         $settings['ozon_parent_categories'] = explode(PHP_EOL, $settings_helper->getByKey('ozon_parent_categories'));
         $settings['ozon_classification_store'] = $settings_helper->getByKey('ozon_classification_store');
-
+        $settings['ozon_dictionaries_pimcore_start_path'] = $settings_helper->getByKey('ozon_dictionaries_pimcore_start_path');
 
         //load Ozon data provider
         $ozon_data_provider = new OzonDataProvider();
@@ -100,7 +101,12 @@ class OzonAttributesUpdateCommand extends AbstractCommand
                         // save big dictionaries to another job
                         if ($dictionary['has_next'] == true) {
                             $dictionary_elements[$dictionary_id] = [];
-                            // todo: create folders for dictionaries
+
+                            //create folder for big dictionary
+                            $folder = DataObject\Service::createFolderByPath($settings['ozon_dictionaries_pimcore_start_path'].$ozon_attribute['name']);
+                            $folder->setLocked(false);
+                            $folder->setProperty('dictionary_id', 'Text', $dictionary_id);
+                            $folder->save();
 
                         } else {
                             $dictionary_elements[$dictionary_id] = $dictionary['elements'];

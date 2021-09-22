@@ -47,7 +47,7 @@ class OzonCategoriesUpdateCommand extends AbstractCommand
             $ozon_categories_tree = $ozon_data_provider->getCategories($ozon_parent_category_id);
 
             //create_update and set Unlocked
-            $categories_processor->insertUpdate($ozon_categories_tree, $settings['ozon_categories_pimcore_start_path']);
+            $categories_processor->insertUpdateFromOzonThree($ozon_categories_tree, $settings['ozon_categories_pimcore_start_path']);
         }
 
         return 0;
