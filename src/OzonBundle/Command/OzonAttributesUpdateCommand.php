@@ -3,6 +3,7 @@
 namespace Savosik\OzonBundle\Command;
 
 use Pimcore\Console\AbstractCommand;
+use Pimcore\DataObject\GridColumnConfig\Operator\PHP;
 use Savosik\OzonBundle\Processors\AttributesProcessor;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -91,17 +92,20 @@ class OzonAttributesUpdateCommand extends AbstractCommand
                 $dictionary_id = $ozon_attribute['dictionary_id'];
                 $dictionary_elements[$dictionary_id] = [];
 
+                echo "dictionary_id: ".$dictionary_id.PHP_EOL;
+
                 if (intval($dictionary_id) != 0) {
 
-                    var_dump($dictionary_id);
+                    echo "dictionary_id_2: ".$dictionary_id.PHP_EOL;
+
                     var_dump(array_keys($dictionary_elements));
 
                     // reduce requests to ozon
                     if(in_array($dictionary_id, array_keys($dictionary_elements)) == false){
 
-                        var_dump("We are here");
+                        echo "we are here";
+
                         $dictionary = $ozon_data_provider->getDictionaryElements($ozon_category_id, $ozon_attribute_id);
-                        var_dump($dictionary);
 
                         // save big dictionaries to another job
                         if ($dictionary['has_next'] == true) {
