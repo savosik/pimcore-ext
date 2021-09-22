@@ -84,7 +84,7 @@ class OzonAttributesUpdateCommand extends AbstractCommand
                 // add group to collection
                 $attributes_processor->addGroupToCollection($collection_id, $created_group_id);
 
-
+                //get dictionary elements
                 $dictionary_elements = [];
                 $dictionary_id = $ozon_attribute['dictionary_id'];
 
