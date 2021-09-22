@@ -97,7 +97,7 @@ class OzonAttributesUpdateCommand extends AbstractCommand
                     var_dump(array_keys($dictionary_elements));
 
                     // reduce requests to ozon
-                    if(!in_array($dictionary_id, array_keys($dictionary_elements))){
+                    if(in_array($dictionary_id, array_keys($dictionary_elements)) == false){
 
                         var_dump("We are here");
                         $dictionary = $ozon_data_provider->getDictionaryElements($ozon_category_id, $ozon_attribute_id);
