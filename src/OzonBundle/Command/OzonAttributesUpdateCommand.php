@@ -89,7 +89,7 @@ class OzonAttributesUpdateCommand extends AbstractCommand
                 $attributes_processor->addGroupToCollection($collection_id, $created_group_id);
 
                 //get dictionary elements
-                $dictionary_id = $ozon_attribute['dictionary_id'];
+                $dictionary_id = intval($ozon_attribute['dictionary_id']);
                 $dictionary_elements[$dictionary_id] = [];
 
                 echo "dictionary_id: ".$dictionary_id.PHP_EOL;
