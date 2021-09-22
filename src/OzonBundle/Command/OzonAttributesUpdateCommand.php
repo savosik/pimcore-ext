@@ -53,7 +53,7 @@ class OzonAttributesUpdateCommand extends AbstractCommand
         $pimcore_categories = $categories_processor->getCategories($settings['ozon_categories_pimcore_start_path']);
 
         //for reducing requests count
-        $dictionary_elements = [];
+        $dictionary_elements[0] = [];
 
 
         //iterate with created (in pimcore) categories
