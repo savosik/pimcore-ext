@@ -51,11 +51,14 @@ class OzonAttributesUpdateCommand extends AbstractCommand
         $categories_processor = new CategoriesProcessor();
         $pimcore_categories = $categories_processor->getCategories($settings['ozon_categories_pimcore_start_path']);
 
+        //for reducing requests count
+        $dictionary_elements = [];
+
 
         //iterate with created (in pimcore) categories
         foreach ($pimcore_categories as $pimcore_category) {
 
-            $ozon_category_id = $pimcore_category['ozon_category_id']; //from folder user properties
+            $ozon_category_id = $pimcore_category['ozon_category_id']; //from pimcore folder user properties (user custom data)
 
             //get ozon attributes by category id
             $ozon_attributes = $ozon_data_provider->getAttributesByCategoriesIds(array($ozon_category_id));
@@ -85,20 +88,27 @@ class OzonAttributesUpdateCommand extends AbstractCommand
                 $attributes_processor->addGroupToCollection($collection_id, $created_group_id);
 
                 //get dictionary elements
-                $dictionary_elements = [];
                 $dictionary_id = $ozon_attribute['dictionary_id'];
+                $dictionary_elements[$dictionary_id] = [];
 
-                if ($dictionary_id !== 0) {
+                if (intval($dictionary_id) != 0) {
 
-                    $dictionary = $ozon_data_provider->getDictionaryElements($ozon_category_id, $ozon_attribute_id);
-                    if ($dictionary['has_next'] == true) {
-                        // todo: create folders for dictionaries
-                    } else {
-                        $dictionary_elements = $dictionary['elements'];
+                    // reduce requests to ozon
+                    if(!array_key_exists($dictionary_id, $dictionary_elements)){
+                        $dictionary = $ozon_data_provider->getDictionaryElements($ozon_category_id, $ozon_attribute_id);
+
+                        // save big dictionaries to another job
+                        if ($dictionary['has_next'] == true) {
+                            $dictionary_elements[$dictionary_id] = [];
+                            // todo: create folders for dictionaries
+
+                        } else {
+                            $dictionary_elements[$dictionary_id] = $dictionary['elements'];
+                        }
                     }
                 }
 
-                $prop_id = $attributes_processor->createPropertyByOzonAttribute($store_id, $ozon_attribute, $ozon_category_id, $dictionary_elements);
+                $prop_id = $attributes_processor->createPropertyByOzonAttribute($store_id, $ozon_attribute, $ozon_category_id, $dictionary_elements[$dictionary_id]);
                 $attributes_processor->addPropertyToGroup($created_group_id, $prop_id);
             }
 
