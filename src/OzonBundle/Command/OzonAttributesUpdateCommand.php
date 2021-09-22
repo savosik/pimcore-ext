@@ -95,7 +95,11 @@ class OzonAttributesUpdateCommand extends AbstractCommand
 
                     // reduce requests to ozon
                     if(!array_key_exists($dictionary_id, $dictionary_elements)){
+
+
                         $dictionary = $ozon_data_provider->getDictionaryElements($ozon_category_id, $ozon_attribute_id);
+
+                        var_dump($dictionary);
 
                         // save big dictionaries to another job
                         if ($dictionary['has_next'] == true) {

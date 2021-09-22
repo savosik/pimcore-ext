@@ -90,7 +90,7 @@ class AttributesProcessor
 
     public function createPropertyByOzonAttribute($store_id, $ozon_attribute, $ozon_category_id, $dictionary_elements = [])
     {
-        var_dump($dictionary_elements);
+
 
         return 0;
     }
