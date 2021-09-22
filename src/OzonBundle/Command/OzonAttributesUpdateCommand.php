@@ -91,7 +91,7 @@ class OzonAttributesUpdateCommand extends AbstractCommand
                 if ($dictionary_id !== 0) {
 
                     $dictionary = $ozon_data_provider->getDictionaryElements($ozon_category_id, $ozon_attribute_id);
-                    if ($dictionary['has_many'] == true) {
+                    if ($dictionary['has_next'] == true) {
                         // todo: create folders for dictionaries
                     } else {
                         $dictionary_elements = $dictionary['elements'];

@@ -29,13 +29,11 @@ class CategoriesProcessor
         return $res;
     }
 
-
     /**
      * @throws \Exception
      */
     public function insertUpdate($ozon_categories_tree, $start_path = '')
     {
-
         $categories_list = [];
         $this->buildList($ozon_categories_tree, $start_path, $categories_list);
 
@@ -68,12 +66,14 @@ class CategoriesProcessor
         }
     }
 
+
     public function lockAllCategories($start_path = null)
     {
         $folders = DataObject\Folder::getList();
 
         foreach ($folders as $folder) {
             $folder_path = $folder->getFullPath();
+
 
             if (str_contains($folder_path, $start_path)) {
                 $folder->setLocked(true);
