@@ -95,8 +95,6 @@ class OzonAttributesUpdateCommand extends AbstractCommand
                     // reduce requests to ozon
                     if(!in_array($dictionary_id, array_keys($dictionary_elements))){
 
-                        echo "we are here";
-
                         $dictionary = $ozon_data_provider->getDictionaryElements($ozon_category_id, $ozon_attribute_id);
 
                         // save big dictionaries to another job
@@ -106,6 +104,7 @@ class OzonAttributesUpdateCommand extends AbstractCommand
 
                         } else {
                             $dictionary_elements[$dictionary_id] = $dictionary['elements'];
+                            var_dump($dictionary['elements']);
                         }
                     }
                 }
@@ -113,7 +112,6 @@ class OzonAttributesUpdateCommand extends AbstractCommand
                 $prop_id = $attributes_processor->createPropertyByOzonAttribute($store_id, $ozon_attribute, $ozon_category_id, $dictionary_elements[$dictionary_id]);
                 $attributes_processor->addPropertyToGroup($created_group_id, $prop_id);
             }
-
         }
 
         return 0;
