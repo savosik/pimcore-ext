@@ -90,18 +90,10 @@ class OzonAttributesUpdateCommand extends AbstractCommand
 
                 //get dictionary elements
                 $dictionary_id = intval($ozon_attribute['dictionary_id']);
-                $dictionary_elements[$dictionary_id] = [];
-
-                echo "dictionary_id: ".$dictionary_id.PHP_EOL;
-
-                if (intval($dictionary_id) != 0) {
-
-                    echo "dictionary_id_2: ".$dictionary_id.PHP_EOL;
-
-                    var_dump(array_keys($dictionary_elements));
+                if ($dictionary_id != 0) {
 
                     // reduce requests to ozon
-                    if(in_array($dictionary_id, array_keys($dictionary_elements)) == false){
+                    if(!in_array($dictionary_id, array_keys($dictionary_elements))){
 
                         echo "we are here";
 
