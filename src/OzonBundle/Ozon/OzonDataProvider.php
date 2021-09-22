@@ -23,7 +23,8 @@ class OzonDataProvider{
         $this->url = "https://api-seller.ozon.ru/v1/categories/tree?category_id=".$parent_category_id;
         $this->method = "GET";
 
-        return $this->execute();
+        $res = $this->execute();
+        return $res['result'];
     }
 
 
@@ -36,12 +37,24 @@ class OzonDataProvider{
             "language" => "DEFAULT"
         ];
 
-        return $this->execute();
+        $res = $this->execute();
+        return $res['result'];
     }
 
 
-    public function getDictionary($dictionary_id){
-        return ["has_next" => false, "elements" => []];
+    public function getDictionaryElements($category_id, $attribute_id){
+        $this->url = "https://api-seller.ozon.ru/v2/category/attribute/values";
+        $this->method = "POST";
+        $this->request_arr = [
+            "attribute_id" => $attribute_id,
+            "category_id" => $category_id,
+            "language" => "DEFAULT",
+            "last_value_id" => 0,
+            "limit" => 1000
+        ];
+
+        $res = $this->execute();
+        return ["has_next" => (bool) $res['has_next'], "elements" => $res['result']];
     }
 
 
@@ -59,8 +72,8 @@ class OzonDataProvider{
             ]
         );
 
-        $result = json_decode($response->getBody(), true);
-        return $result['result'];
+        $res = json_decode($response->getBody(), true);
+        return $res;
     }
 
 

@@ -11,6 +11,7 @@ use Savosik\OzonBundle\Helpers\SettingsHelper;
 use Savosik\OzonBundle\Ozon\OzonDataProvider;
 
 use Savosik\OzonBundle\Processors\CategoriesProcessor;
+use Savosik\OzonBundle\Processors\DictionariesProcessor;
 
 
 class OzonAttributesUpdateCommand extends AbstractCommand
@@ -52,11 +53,13 @@ class OzonAttributesUpdateCommand extends AbstractCommand
 
 
         //iterate with created (in pimcore) categories
-        foreach ($pimcore_categories as $pimcore_category){
+        foreach ($pimcore_categories as $pimcore_category) {
+
+            $ozon_category_id = $pimcore_category['ozon_category_id']; //from folder user properties
 
             //get ozon attributes by category id
-            $ozon_attributes  = $ozon_data_provider->getAttributesByCategoriesIds(array($pimcore_category['ozon_category_id']));
-            $ozon_attributes  = $ozon_attributes[0]['attributes'];
+            $ozon_attributes = $ozon_data_provider->getAttributesByCategoriesIds(array($ozon_category_id));
+            $ozon_attributes = $ozon_attributes[0]['attributes'];
 
             //create_collection with same name like category and full path in description
             $full_path = $pimcore_category['full_path'];
@@ -65,12 +68,13 @@ class OzonAttributesUpdateCommand extends AbstractCommand
             $collection_id = $attributes_processor->createCollection($store_id, $collection_name, $full_path);
 
             // fetch loaded from request ozon attributes
-            foreach ($ozon_attributes as $ozon_attribute){
+            foreach ($ozon_attributes as $ozon_attribute) {
+                $ozon_attribute_id = $ozon_attribute['id'];
                 $ozon_group_id = $ozon_attribute['group_id'];
                 $ozon_group_name = $ozon_attribute['group_name'];
                 $ozon_group_description = $ozon_group_id;
 
-                if($ozon_group_id == 0){
+                if ($ozon_group_id == 0) {
                     $ozon_group_name = $collection_name;
                 }
 
@@ -81,16 +85,21 @@ class OzonAttributesUpdateCommand extends AbstractCommand
                 $attributes_processor->addGroupToCollection($collection_id, $created_group_id);
 
 
+                $dictionary_elements = [];
                 $dictionary_id = $ozon_attribute['dictionary_id'];
-                if($dictionary_id !== 0){
-                    $dictionary = $ozon_data_provider->getDictionary($dictionary_id);
+
+                if ($dictionary_id !== 0) {
+
+                    $dictionary = $ozon_data_provider->getDictionaryElements($ozon_category_id, $ozon_attribute_id);
+                    if ($dictionary['has_many'] == true) {
+                        // todo: create folders for dictionaries
+                    } else {
+                        $dictionary_elements = $dictionary['elements'];
+                    }
                 }
 
-                $prop_id = $attributes_processor->createPropertyByOzonAttribute($ozon_attribute, $store_id);
+                $prop_id = $attributes_processor->createPropertyByOzonAttribute($store_id, $ozon_attribute, $ozon_category_id, $dictionary_elements);
                 $attributes_processor->addPropertyToGroup($created_group_id, $prop_id);
-
-
-
             }
 
         }
