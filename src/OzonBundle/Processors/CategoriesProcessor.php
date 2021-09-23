@@ -19,9 +19,6 @@ class CategoriesProcessor
         $res = [];
         foreach ($folders as $folder) {
 
-            echo $folder->getKey().PHP_EOL;
-            echo $folder->getFullPath().PHP_EOL;
-
             $childs_amount = $folder->getChildAmount();
             $full_path = $folder->getFullPath();
             $is_locked = $folder->isLocked();
@@ -78,7 +75,11 @@ class CategoriesProcessor
 
     public function lockAllCategories($start_path = null)
     {
-        $folders = DataObject\Folder::getList();
+        $folders = DataObject::getList(
+            [
+                'objectTypes' => [DataObject::OBJECT_TYPE_FOLDER]
+            ]
+        );
 
         foreach ($folders as $folder) {
             $folder_path = $folder->getFullPath();

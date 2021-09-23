@@ -19,12 +19,16 @@ class DictionariesProcessor
         ];
 
 
-        $folders = DataObject\Folder::getList();
+        $folders = DataObject::getList(
+            [
+                'objectTypes' => [DataObject::OBJECT_TYPE_FOLDER]
+            ]
+        );
 
         foreach ($folders as $folder){
-            echo $folder->getKey().PHP_EOL;
+
             $tmp['dictionary_path'] = $folder->getPath();
-            echo $tmp['dictionary_path'].PHP_EOL;
+
             if(str_contains($tmp['dictionary_path'], $dictionaries_path)){
                 $tmp['category_id'] = $folder->getProperty('can_get_with_category');
                 $tmp['attribute_id'] = $folder->getProperty('can_get_with_attribute');
