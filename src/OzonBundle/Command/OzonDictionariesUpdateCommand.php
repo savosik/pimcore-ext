@@ -25,6 +25,15 @@ class OzonDictionariesUpdateCommand extends AbstractCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        for ($i=0; $i<100; $i++){
+            $this->make_update_step();
+            sleep(1);
+        }
+        return 0;
+    }
+
+
+    private function make_update_step(){
         //load settings
         $settings_helper = new SettingsHelper();
         $settings['ozon_client_id'] = $settings_helper->getByKey('ozon_client_id');
@@ -33,7 +42,6 @@ class OzonDictionariesUpdateCommand extends AbstractCommand
         $settings['ozon_parent_categories'] = explode(PHP_EOL, $settings_helper->getByKey('ozon_parent_categories'));
         $settings['ozon_classification_store'] = $settings_helper->getByKey('ozon_classification_store');
         $settings['ozon_dictionaries_pimcore_start_path'] = $settings_helper->getByKey('ozon_dictionaries_pimcore_start_path');
-
 
         //load ozon data provider
         $ozon_data_provider = new OzonDataProvider();
@@ -51,7 +59,5 @@ class OzonDictionariesUpdateCommand extends AbstractCommand
 
         //add elements to dictionary
         $dictionaries_processor->addElementsToDictionary($pimcore_dictionary['dictionary_path'], $ozon_elements_set);
-
-        return 0;
     }
 }
