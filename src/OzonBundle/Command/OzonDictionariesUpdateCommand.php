@@ -54,10 +54,11 @@ class OzonDictionariesUpdateCommand extends AbstractCommand
         //get first not completely processed dictionary
         $pimcore_dictionary = $dictionaries_processor->getDictionaryToProcess($settings['ozon_dictionaries_pimcore_start_path']);
 
-        var_dump($pimcore_dictionary);
 
         //get elements for dictionary
-        $ozon_elements_set = $ozon_data_provider->getDictionaryElements($pimcore_dictionary['category_id'], $pimcore_dictionary['attribute_id'], $pimcore_dictionary['last_value_id']);
+        if(!empty($pimcore_dictionary['category_id'])){
+            $ozon_elements_set = $ozon_data_provider->getDictionaryElements($pimcore_dictionary['category_id'], $pimcore_dictionary['attribute_id'], $pimcore_dictionary['last_value_id']);
+        }
 
         //add elements to dictionary
         $dictionaries_processor->addElementsToDictionary($pimcore_dictionary['dictionary_path'], $ozon_elements_set);
