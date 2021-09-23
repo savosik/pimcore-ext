@@ -110,6 +110,7 @@ class OzonAttributesUpdateCommand extends AbstractCommand
                             //ozon hasn't methods providing dictionary data directly by dictionary_id
                             $folder->setProperty('can_get_with_category', 'Text', $ozon_category_id);
                             $folder->setProperty('can_get_with_attribute', 'Text', $ozon_attribute_id);
+                            $folder->setProperty('last_value_id', 'Text', 0);
 
                             $folder->save();
 

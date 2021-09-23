@@ -42,14 +42,14 @@ class OzonDataProvider{
     }
 
 
-    public function getDictionaryElements($category_id, $attribute_id){
+    public function getDictionaryElements($category_id, $attribute_id, $last_value_id = 0){
         $this->url = "https://api-seller.ozon.ru/v2/category/attribute/values";
         $this->method = "POST";
         $this->request_arr = [
             "attribute_id" => $attribute_id,
             "category_id" => $category_id,
             "language" => "DEFAULT",
-            "last_value_id" => 0,
+            "last_value_id" => $last_value_id,
             "limit" => 50
         ];
 
