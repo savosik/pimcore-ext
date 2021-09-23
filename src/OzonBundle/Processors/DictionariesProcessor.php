@@ -31,7 +31,6 @@ class DictionariesProcessor
 
             $tmp['dictionary_path'] = $folder->getFullPath();
 
-
             if(str_contains($tmp['dictionary_path'], $dictionaries_path) && $tmp['dictionary_path'] != $dictionaries_path){
 
                 $tmp['category_id'] = $folder->getProperty('can_get_with_category');
@@ -44,6 +43,7 @@ class DictionariesProcessor
                 if($tmp['last_modified'] < $res["last_modified"]){
                     $res = $tmp;
                 }
+
                 // ops... we found dictionary with not complete getting of elements
                 if(intval($tmp['last_value_id']) != 0){
                     $res = $tmp;
