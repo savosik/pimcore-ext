@@ -55,16 +55,18 @@ class DictionariesProcessor
         foreach ($ozon_elements_set['elements'] as $element){
             $key = str_replace("/", "|", $element['value']);
 
-            $obj = DataObject::getByPath($folder_path."/".$key);
-            if(!$obj){
-                $obj->setKey($key);
-                $obj->setItem_id($element['id']);
-                $obj->setItem_value($element['value']);
-                $obj->setItem_info($element['info']);
-                $obj->setItem_picture($element['picture']);
-                $obj->setParentId($folder->getId());
-                $obj->setPublished(true);
-                $obj->save();
+            $isset_obj = DataObject::getByPath($folder_path."/".$key);
+
+            if(!$isset_obj){
+                $dictionary_item = new DataObject\OzonDictionaryItem();
+                $dictionary_item->setKey($key);
+                $dictionary_item->setItem_id($element['id']);
+                $dictionary_item->setItem_value($element['value']);
+                $dictionary_item->setItem_info($element['info']);
+                $dictionary_item->setItem_picture($element['picture']);
+                $dictionary_item->setParentId($folder->getId());
+                $dictionary_item->setPublished(true);
+                $dictionary_item->save();
             }
 
         }
