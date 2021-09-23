@@ -8,7 +8,7 @@ class SettingsHelper{
     private $settings_store = [];
 
     public function __construct(){
-        $entries = new DataObject\Settings\Listing();
+        $entries = new DataObject\OzonSettings\Listing();
 
         foreach ($entries as $entry){
             $this->settings_store[$entry->getSetting_key()] = $entry->getSetting_value();
