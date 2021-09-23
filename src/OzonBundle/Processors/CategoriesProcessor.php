@@ -2,6 +2,7 @@
 
 namespace Savosik\OzonBundle\Processors;
 
+use Pimcore\DataObject\GridColumnConfig\Operator\PHP;
 use Pimcore\Model\DataObject;
 
 
@@ -14,6 +15,10 @@ class CategoriesProcessor
 
         $res = [];
         foreach ($folders as $folder) {
+
+            echo $folder->getKey().PHP_EOL;
+            echo $folder->getFullPath().PHP_EOL;
+
             $childs_amount = $folder->getChildAmount();
             $full_path = $folder->getFullPath();
             $is_locked = $folder->isLocked();
