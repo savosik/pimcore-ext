@@ -2,6 +2,7 @@
 
 namespace Savosik\OzonBundle\Processors;
 
+use Pimcore\DataObject\GridColumnConfig\Operator\PHP;
 use Pimcore\Model\DataObject;
 
 
@@ -21,7 +22,9 @@ class DictionariesProcessor
         $folders = DataObject\Folder::getList();
 
         foreach ($folders as $folder){
-            $tmp['dictionary_path'] = $folder->getFullPath();
+            echo $folder->getKey().PHP_EOL;
+            $tmp['dictionary_path'] = $folder->getPath();
+            echo $tmp['dictionary_path'].PHP_EOL;
 
             if(str_contains($tmp['dictionary_path'], $dictionaries_path)){
                 $tmp['category_id'] = $folder->getProperty('can_get_with_category');
