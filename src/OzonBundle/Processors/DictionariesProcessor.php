@@ -19,7 +19,7 @@ class DictionariesProcessor
         ];
 
 
-        $folders = DataObject::getList(
+        $folders = DataObject\Folder::getList(
             [
                 'objectTypes' => [DataObject::OBJECT_TYPE_FOLDER]
             ]

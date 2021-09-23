@@ -10,7 +10,7 @@ class CategoriesProcessor
 
     public function getCategories($start_path): array
     {
-        $folders = DataObject::getList(
+        $folders = DataObject\Folder::getList(
             [
                 'objectTypes' => [DataObject::OBJECT_TYPE_FOLDER]
             ]
@@ -75,7 +75,7 @@ class CategoriesProcessor
 
     public function lockAllCategories($start_path = null)
     {
-        $folders = DataObject::getList(
+        $folders = DataObject\Folder::getList(
             [
                 'objectTypes' => [DataObject::OBJECT_TYPE_FOLDER]
             ]
