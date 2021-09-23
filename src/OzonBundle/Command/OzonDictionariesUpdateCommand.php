@@ -56,7 +56,7 @@ class OzonDictionariesUpdateCommand extends AbstractCommand
 
 
         //get elements for dictionary
-        if(!empty($pimcore_dictionary['category_id'])){
+        if(!empty($pimcore_dictionary['category_id']) && !empty($pimcore_dictionary['attribute_id'])){
             $ozon_elements_set = $ozon_data_provider->getDictionaryElements($pimcore_dictionary['category_id'], $pimcore_dictionary['attribute_id'], $pimcore_dictionary['last_value_id']);
         }
 
