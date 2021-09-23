@@ -53,7 +53,7 @@ class DictionariesProcessor
         $folder_path = $folder->getRealFullPath();
 
         foreach ($ozon_elements_set['elements'] as $element){
-            $key = str_replace("/", "|", $element['value']);
+            $key = trim(str_replace("/", "|", $element['value']));
 
             $isset_obj = DataObject::getByPath($folder_path."/".$key);
 
