@@ -25,11 +25,12 @@ class DictionariesProcessor
             ]
         );
 
-        var_dump($folders);
+
 
         foreach ($folders as $folder){
 
             $tmp['dictionary_path'] = $folder->getPath();
+            echo $folder->getPath().PHP_EOL;
 
             if(str_contains($tmp['dictionary_path'], $dictionaries_path) && $tmp['dictionary_path'] != $dictionaries_path){
                 $tmp['category_id'] = $folder->getProperty('can_get_with_category');
