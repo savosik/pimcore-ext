@@ -52,7 +52,7 @@ class DictionariesProcessor
 
         foreach ($ozon_elements_set['elements'] as $element){
             $ozon_dictionary_item = new DataObject\OzonDictionaryItem();
-            $ozon_dictionary_item->setKey(str_replace("/", "|",$element['value']));
+            $ozon_dictionary_item->setKey(str_replace("/", "|", $element['value']));
             $ozon_dictionary_item->setItem_id($element['id']);
             $ozon_dictionary_item->setItem_value($element['value']);
             $ozon_dictionary_item->setItem_info($element['info']);
