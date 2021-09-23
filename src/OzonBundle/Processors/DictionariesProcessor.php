@@ -50,17 +50,23 @@ class DictionariesProcessor
         $folder = DataObject\Folder::getByPath($dictionary_path);
         $folder->setProperty('last_modified','text', time());
 
-        foreach ($ozon_elements_set['elements'] as $element){
-            $ozon_dictionary_item = new DataObject\OzonDictionaryItem();
-            $ozon_dictionary_item->setKey(str_replace("/", "|", $element['value']));
-            $ozon_dictionary_item->setItem_id($element['id']);
-            $ozon_dictionary_item->setItem_value($element['value']);
-            $ozon_dictionary_item->setItem_info($element['info']);
-            $ozon_dictionary_item->setItem_picture($element['picture']);
-            $ozon_dictionary_item->setParentId($folder->getId());
-            $ozon_dictionary_item->setPublished(true);
+        $folder_path = $folder->getRealFullPath();
 
-            $ozon_dictionary_item->save();
+        foreach ($ozon_elements_set['elements'] as $element){
+            $key = str_replace("/", "|", $element['value']);
+
+            $obj = DataObject::getByPath($folder_path."/".$key);
+            if(!$obj){
+                $obj->setKey($key);
+                $obj->setItem_id($element['id']);
+                $obj->setItem_value($element['value']);
+                $obj->setItem_info($element['info']);
+                $obj->setItem_picture($element['picture']);
+                $obj->setParentId($folder->getId());
+                $obj->setPublished(true);
+                $obj->save();
+            }
+
         }
 
         if($ozon_elements_set['has_next'] == true){
@@ -68,7 +74,6 @@ class DictionariesProcessor
             $last_element_id = $last_element['id'];
 
             $folder->setProperty('last_value_id', 'Text', $last_element_id);
-
             $folder->save();
         }
 
