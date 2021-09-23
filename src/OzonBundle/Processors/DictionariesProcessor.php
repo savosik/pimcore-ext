@@ -32,10 +32,7 @@ class DictionariesProcessor
             $tmp['dictionary_path'] = $folder->getFullPath();
 
 
-            if(str_contains($tmp['dictionary_path'], $dictionaries_path)){
-
-                echo $folder->getFullPath().PHP_EOL;
-                echo $dictionaries_path.PHP_EOL;
+            if(str_contains($tmp['dictionary_path'], $dictionaries_path) && $tmp['dictionary_path'] != $dictionaries_path){
 
                 $tmp['category_id'] = $folder->getProperty('can_get_with_category');
                 $tmp['attribute_id'] = $folder->getProperty('can_get_with_attribute');
