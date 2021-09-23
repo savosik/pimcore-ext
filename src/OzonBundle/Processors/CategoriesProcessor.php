@@ -12,7 +12,7 @@ class CategoriesProcessor
     {
         $folders = DataObject::getList(
             [
-                'objectTypes' => DataObject::OBJECT_TYPE_FOLDER
+                'objectTypes' => [DataObject::OBJECT_TYPE_FOLDER]
             ]
         );
 
