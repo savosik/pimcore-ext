@@ -29,12 +29,12 @@ class DictionariesProcessor
 
         foreach ($folders as $folder){
 
-            $tmp['dictionary_path'] = $folder->getPath();
+            $tmp['dictionary_path'] = $folder->getFullPath();
 
 
             if(str_contains($tmp['dictionary_path'], $dictionaries_path)){
 
-                echo $folder->getPath().PHP_EOL;
+                echo $folder->getFullPath().PHP_EOL;
                 echo $dictionaries_path.PHP_EOL;
 
                 $tmp['category_id'] = $folder->getProperty('can_get_with_category');
