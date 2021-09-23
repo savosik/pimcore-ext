@@ -1,7 +1,13 @@
 services:
+
   Savosik\OzonBundle\Command\OzonCategoriesUpdateCommand:
     tags:
       - { name: 'console.command', command: 'ozon:categories:update' }
+
   Savosik\OzonBundle\Command\OzonAttributesUpdateCommand:
     tags:
       - { name: 'console.command', command: 'ozon:attributes:update' }
+
+  Savosik\OzonBundle\Command\OzonDictionariesUpdateCommand:
+    tags:
+      - { name: 'console.command', command: 'ozon:dictionaries:update' }
