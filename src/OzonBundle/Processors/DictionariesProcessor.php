@@ -77,6 +77,9 @@ class DictionariesProcessor
 
             $folder->setProperty('last_value_id', 'Text', $last_element_id);
             $folder->save();
+        }else{
+            $folder->setProperty('last_value_id', 'Text', 0);
+            $folder->save();
         }
 
     }
