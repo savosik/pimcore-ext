@@ -104,8 +104,13 @@ class OzonAttributesUpdateCommand extends AbstractCommand
 
                             //create folder for big dictionary
                             $folder = DataObject\Service::createFolderByPath($settings['ozon_dictionaries_pimcore_start_path'].str_replace("/","|",$ozon_attribute['name']));
-                            $folder->setLocked(false);
                             $folder->setProperty('dictionary_id', 'Text', $dictionary_id);
+                            $folder->setProperty('last_modified', 'Text', time());
+
+                            //ozon hasn't methods providing dictionary data directly by dictionary_id
+                            $folder->setProperty('can_get_with_category', 'Text', $ozon_category_id);
+                            $folder->setProperty('can_get_with_attribute', 'Text', $ozon_attribute_id);
+
                             $folder->save();
 
                         } else {
