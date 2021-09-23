@@ -2,7 +2,6 @@
 
 namespace Savosik\OzonBundle\Processors;
 
-use Pimcore\DataObject\GridColumnConfig\Operator\PHP;
 use Pimcore\Model\DataObject;
 
 
@@ -11,7 +10,11 @@ class CategoriesProcessor
 
     public function getCategories($start_path): array
     {
-        $folders = DataObject\Folder::getList();
+        $folders = DataObject::getList(
+            [
+                'objectTypes' => DataObject::OBJECT_TYPE_FOLDER
+            ]
+        );
 
         $res = [];
         foreach ($folders as $folder) {
