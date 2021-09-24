@@ -102,18 +102,6 @@ class OzonAttributesUpdateCommand extends AbstractCommand
                         if ($dictionary['has_next'] == true) {
                             $dictionary_elements[$dictionary_id] = [];
 
-                            //create folder for big dictionary
-                            $folder = DataObject\Service::createFolderByPath($settings['ozon_dictionaries_pimcore_start_path'].str_replace("/","|",$ozon_attribute['name']));
-                            $folder->setProperty('dictionary_id', 'Text', $dictionary_id);
-                            $folder->setProperty('last_modified', 'Text', time());
-
-                            //ozon hasn't methods providing dictionary data directly by dictionary_id
-                            $folder->setProperty('can_get_with_category', 'Text', $ozon_category_id);
-                            $folder->setProperty('can_get_with_attribute', 'Text', $ozon_attribute_id);
-                            $folder->setProperty('last_value_id', 'Text', 0);
-
-                            $folder->save();
-
                         } else {
                             $dictionary_elements[$dictionary_id] = $dictionary['elements'];
                         }
