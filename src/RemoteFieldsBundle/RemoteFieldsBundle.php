@@ -7,13 +7,22 @@ use Pimcore\Extension\Bundle\Traits\PackageVersionTrait;
 
 
 class RemoteFieldsBundle extends AbstractPimcoreBundle {
-    use PackageVersionTrait;
 
     protected function getComposerPackageName(): string
     {
         // getVersion() will use this name to read the version from
         // PackageVersions and return a normalized value
         return 'savosik/pimcore-ext';
+    }
+
+    public function getVersion()
+    {
+        return '1.0';
+    }
+
+    public function getDescription()
+    {
+        return 'to provide ajax remote select field and multiselect field';
     }
 
     public function getJsPaths() {
