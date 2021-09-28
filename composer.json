@@ -1,7 +1,7 @@
 {
-  "name": "savosik/pimcore-ext",
+  "name": "savosik/pimcore-ozon",
   "type": "pimcore-bundle",
-  "description": "Adds to Pimcore console commands that update dictionaries",
+  "description": "Updates categories in Pimcore by Ozon data, Creates classification store by Ozon attibutes",
   "minimum-stability": "dev",
   "version": "1.0",
   "license": "GPL-3.0-or-later",
@@ -19,15 +19,13 @@
   },
   "autoload": {
     "psr-4": {
-      "Savosik\\OzonBundle\\": "src/OzonBundle",
-      "Savosik\\RemoteFieldsBundle\\": "src/RemoteFieldsBundle"
+      "Savosik\\OzonBundle\\": "src/OzonBundle"
     }
   },
   "extra": {
     "pimcore": {
       "bundles": [
-        "Savosik\\OzonBundle\\OzonBundle",
-        "Savosik\\RemoteFieldsBundle\\RemoteFieldsBundle"
+        "Savosik\\OzonBundle\\OzonBundle"
       ]
     }
   }
