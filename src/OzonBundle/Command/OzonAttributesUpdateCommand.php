@@ -13,7 +13,6 @@ use Savosik\OzonBundle\Helpers\SettingsHelper;
 use Savosik\OzonBundle\Ozon\OzonDataProvider;
 
 use Savosik\OzonBundle\Processors\CategoriesProcessor;
-use Savosik\OzonBundle\Processors\DictionariesProcessor;
 
 
 class OzonAttributesUpdateCommand extends AbstractCommand

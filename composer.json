@@ -19,13 +19,15 @@
   },
   "autoload": {
     "psr-4": {
-      "Savosik\\OzonBundle\\": "src/OzonBundle"
+      "Savosik\\OzonBundle\\": "src/OzonBundle",
+      "Savosik\\RemoteFieldsBundle\\": "src/RemoteFieldsBundle"
     }
   },
   "extra": {
     "pimcore": {
       "bundles": [
-        "Savosik\\OzonBundle\\OzonBundle"
+        "Savosik\\OzonBundle\\OzonBundle",
+        "Savosik\\RemoteFieldsBundle\\RemoteFieldsBundle"
       ]
     }
   }
